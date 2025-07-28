@@ -1,0 +1,17 @@
+# Use minimal Python image compatible with AMD64
+FROM --platform=linux/amd64 python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files into container
+COPY . .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Ensure output directory exists
+RUN mkdir -p /app/output
+
+# Run main.py when container starts
+CMD ["python", "main.py"]
